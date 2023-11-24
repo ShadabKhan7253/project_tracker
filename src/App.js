@@ -1,7 +1,12 @@
+import { Footer, Header } from './components';
+import { AppRoutes } from './routes/AppRoutes';
+
 function App() {
   return (
     <>
-      <h1>Welcome to React</h1>
+      <Header />
+      <AppRoutes />
+      <Footer />
     </>
   );
 }
