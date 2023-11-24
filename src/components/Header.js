@@ -5,10 +5,10 @@ import Logo from '../assets/ProjectTracker_logo.png';
 export const Header = () => {
   return (
     <header>
-      <nav className=" bg-red-500  dark:bg-gray-800 dark:border-gray-700">
+      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src={Logo} className="h-14 " alt="Project  Tracker Logo" />
+            <img src={Logo} className="h-14 " alt="Project Tracker Logo" />
           </Link>
           <button
             data-collapse-toggle="navbar-solid-bg"
@@ -39,16 +39,16 @@ export const Header = () => {
               <li>
                 <Link
                   to="/"
-                  className="block py-2 px-3 md:p-0 text-white text-xl hover:text-slate-800"
-                  aria-current="page"
+                  className="block py-2 px-3 text-xl md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                  // aria-current="page"
                 >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/projectDetails"
-                  className="block py-5 px-3 md:p-0 text-white text-xl hover:text-slate-800  "
+                  to="/"
+                  className="block py-2 px-3 text-xl md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Project Details
                 </Link>
