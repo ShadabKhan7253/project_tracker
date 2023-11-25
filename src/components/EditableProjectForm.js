@@ -1,14 +1,20 @@
 import React, { useRef } from 'react';
 
-export const EditableProjectForm = ({ onSidebarVisible, isSidebarVisible }) => {
+export const EditableProjectForm = ({ onSidebarVisible, isSidebarVisible, onAddProject }) => {
   const projectNameRef = useRef('');
   const projectDescriptionRef = useRef('');
   const pricePerHourRef = useRef('');
   const projectStatusRef = useRef('Ongoing');
 
   const handleSubmit = () => {
-    const out = `${projectNameRef.current.value} ${pricePerHourRef.current.value} ${projectDescriptionRef.current.value} ${projectStatusRef.current.value}  `;
-    // console.log(out);
+    const projectDetails = {
+      name: projectNameRef.current.value,
+      description: projectDescriptionRef.current.value,
+      price: pricePerHourRef.current.value,
+      status: projectStatusRef.current.value,
+    };
+    onSidebarVisible();
+    onAddProject(projectDetails);
   };
   return (
     <div className={!isSidebarVisible ? 'hidden' : ''}>
