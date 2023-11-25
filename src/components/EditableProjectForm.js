@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-export const EditableProjectForm = () => {
+export const EditableProjectForm = ({ onSidebarVisible, isSidebarVisible }) => {
   const projectNameRef = useRef('');
   const projectDescriptionRef = useRef('');
   const pricePerHourRef = useRef('');
@@ -11,13 +11,14 @@ export const EditableProjectForm = () => {
     // console.log(out);
   };
   return (
-    <div className="hidden">
+    <div className={!isSidebarVisible ? 'hidden' : ''}>
       <div className=" absolute top-0 right-0 w-1/3 h-[100%] bg-white">
         <div className="flex justify-between m-4">
           <h2 className="text-xl  text-center pl-5">Add Projects</h2>
           <button
             type="button"
             className="  focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            onClick={onSidebarVisible}
           >
             Close
           </button>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../assets/ProjectTracker_logo.png';
 import { Sidebar } from './Sidebar';
 
-export const Header = () => {
+export const Header = ({ onSidebarVisible, isSidebarVisible }) => {
   return (
     <header>
       <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -56,7 +56,7 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-          <Sidebar />
+          <Sidebar onSidebarVisible={onSidebarVisible} isSidebarVisible={isSidebarVisible} />
         </div>
       </nav>
     </header>
