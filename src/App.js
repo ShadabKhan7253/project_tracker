@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Footer, Header } from './components';
 import { AppRoutes } from './routes/AppRoutes';
 import { v1 as uuidv4 } from 'uuid';
 
 function App() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(JSON.parse(localStorage.getItem('projects')) || []);
+
+  useEffect(() => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }, [projects]);
 
   const handleSideBar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -16,6 +20,11 @@ function App() {
     setProjects([...projects, projectToBeAdded]);
   };
 
+  const handleDeleteProject = (projectId) => {
+    const updateProjects = projects.filter((project) => project.id !== projectId);
+    setProjects(updateProjects);
+  };
+
   return (
     <>
       <Header
@@ -23,7 +32,7 @@ function App() {
         isSidebarVisible={isSidebarVisible}
         onAddProject={handleAddProject}
       />
-      <AppRoutes projects={projects} />
+      <AppRoutes projects={projects} onDeleteProject={handleDeleteProject} />
       <Footer />
     </>
   );

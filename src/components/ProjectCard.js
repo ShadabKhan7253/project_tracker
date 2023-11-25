@@ -1,9 +1,12 @@
 import React from 'react';
 
-export const ProjectCard = ({ project }) => {
-  const { name, description, price, status } = project;
+export const ProjectCard = ({ project, onDeleteProject }) => {
+  const { id, name, description, price, status } = project;
   return (
-    <div className="min-w-lg max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div
+      style={{ minWidth: '300px' }}
+      className="min-w-lg max-w-xs p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+    >
       <div className="flex justify-between">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {name}
@@ -33,6 +36,7 @@ export const ProjectCard = ({ project }) => {
           <button
             type="button"
             className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3.5 py-3 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            onClick={() => onDeleteProject(id)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="1em" viewBox="0 0 448 512">
               <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />

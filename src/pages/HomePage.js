@@ -1,9 +1,9 @@
 import { ProjectList } from '../components';
 
-export const HomePage = ({ projects }) => {
+export const HomePage = ({ projects, onDeleteProject }) => {
   return (
     <>
-      <ProjectList projects={projects} />
+      <ProjectList projects={projects} onDeleteProject={onDeleteProject} />
     </>
   );
 };
