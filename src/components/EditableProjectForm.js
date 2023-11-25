@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 export const EditableProjectForm = () => {
+  const projectNameRef = useRef('');
+  const projectDescriptionRef = useRef('');
+  const pricePerHourRef = useRef('');
+  const projectStatusRef = useRef('Ongoing');
+
+  const handleSubmit = () => {
+    const out = `${projectNameRef.current.value} ${pricePerHourRef.current.value} ${projectDescriptionRef.current.value} ${projectStatusRef.current.value}  `;
+    // console.log(out);
+  };
   return (
-    <>
+    <div className="hidden">
       <div className=" absolute top-0 right-0 w-1/3 h-[100%] bg-white">
         <div className="flex justify-between m-4">
           <h2 className="text-xl  text-center pl-5">Add Projects</h2>
@@ -27,6 +36,7 @@ export const EditableProjectForm = () => {
               id="projectName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter your project name"
+              ref={projectNameRef}
               required
             />
           </div>
@@ -42,6 +52,7 @@ export const EditableProjectForm = () => {
               id="projectDescription"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Enter your project description"
+              ref={projectDescriptionRef}
               required
             />
           </div>
@@ -56,7 +67,8 @@ export const EditableProjectForm = () => {
               type="number"
               id="pricePerHour"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Enter your project description"
+              placeholder="Enter price per hour"
+              ref={pricePerHourRef}
               required
             />
           </div>
@@ -70,6 +82,7 @@ export const EditableProjectForm = () => {
             <select
               id="status"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              ref={projectStatusRef}
             >
               <option value="ongoing" defaultValue>
                 Ongoing
@@ -81,11 +94,12 @@ export const EditableProjectForm = () => {
           <button
             type="button"
             className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            onClick={handleSubmit}
           >
             Add Project
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
