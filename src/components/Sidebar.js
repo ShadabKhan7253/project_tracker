@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditableProjectForm } from './EditableProjectForm';
 
-export const Sidebar = ({ onSidebarVisible, isSidebarVisible }) => {
+export const Sidebar = ({ onSidebarVisible, isSidebarVisible, onAddProject }) => {
   return (
     <>
       <button
@@ -14,6 +14,7 @@ export const Sidebar = ({ onSidebarVisible, isSidebarVisible }) => {
       <EditableProjectForm
         isSidebarVisible={isSidebarVisible}
         onSidebarVisible={onSidebarVisible}
+        onAddProject={onAddProject}
       />
     </>
   );
