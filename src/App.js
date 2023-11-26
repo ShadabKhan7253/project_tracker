@@ -25,6 +25,30 @@ function App() {
     setProjects(updateProjects);
   };
 
+  const handleUpdateProject = (projectId, updatedProject) => {
+    // console.log(updatedProject.status);
+    const updatedProjects = projects.map((project) => {
+      if (project.id === projectId && updatedProject.status !== 'completed') {
+        return {
+          ...updatedProject,
+          elapsed: project.elapsed,
+          runningSince: project.runningSince,
+          id: projectId,
+        };
+      }
+      if (project.id === projectId && updatedProject.status === 'completed') {
+        return {
+          ...updatedProject,
+          elapsed: project.elapsed + (Date.now() - project.runningSince),
+          runningSince: null,
+          id: projectId,
+        };
+      }
+      return project;
+    });
+    setProjects(updatedProjects);
+  };
+
   return (
     <>
       <Header
@@ -32,7 +56,11 @@ function App() {
         isSidebarVisible={isSidebarVisible}
         onAddProject={handleAddProject}
       />
-      <AppRoutes projects={projects} onDeleteProject={handleDeleteProject} />
+      <AppRoutes
+        projects={projects}
+        onDeleteProject={handleDeleteProject}
+        onUpdateProject={handleUpdateProject}
+      />
       <Footer />
     </>
   );
