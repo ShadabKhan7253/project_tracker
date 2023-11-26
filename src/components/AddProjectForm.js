@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-export const EditableProjectForm = ({ onSidebarVisible, isSidebarVisible, onAddProject }) => {
+export const AddProjectForm = ({ onSidebarVisible, isSidebarVisible, onAddProject }) => {
   const projectNameRef = useRef('');
   const projectDescriptionRef = useRef('');
   const pricePerHourRef = useRef('');
@@ -13,6 +13,10 @@ export const EditableProjectForm = ({ onSidebarVisible, isSidebarVisible, onAddP
       price: pricePerHourRef.current.value,
       status: projectStatusRef.current.value,
     };
+    projectNameRef.current.value = '';
+    projectDescriptionRef.current.value = '';
+    pricePerHourRef.current.value = ' ';
+    projectStatusRef.current.value = '';
     onSidebarVisible();
     onAddProject(projectDetails);
   };
