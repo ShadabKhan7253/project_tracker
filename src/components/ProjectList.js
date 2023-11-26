@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { ProjectCard } from './ProjectCard';
 import { EditModal } from './EditModal';
 
-export const ProjectList = ({ projects, onDeleteProject, onUpdateProject }) => {
+export const ProjectList = ({
+  projects,
+  onDeleteProject,
+  onUpdateProject,
+  onStartTimer,
+  onStopTimer,
+}) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [projectToBeUpdated, setProjectToBeUpdated] = useState(null);
 
@@ -34,6 +40,8 @@ export const ProjectList = ({ projects, onDeleteProject, onUpdateProject }) => {
             onDeleteProject={onDeleteProject}
             handleEditModal={handleEditModal}
             onEditClick={handleEditProject}
+            onStartTimer={onStartTimer}
+            onStopTimer={onStopTimer}
           />
         ))}
       </div>

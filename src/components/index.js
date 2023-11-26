@@ -5,4 +5,5 @@ export { Sidebar } from './Sidebar';
 export { AddProjectForm } from './AddProjectForm';
 export { EditProjectForm } from './EditProjectForm';
 export { EditModal } from './EditModal';
+export { TimerActionButton } from './TimerActionButton';
 export { Footer } from './Footer';

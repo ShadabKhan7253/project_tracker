@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { TimerActionButton } from './TimerActionButton';
+import Helper from '../Helper';
 
-export const ProjectCard = ({ project, onDeleteProject, onEditClick }) => {
+export const ProjectCard = ({
+  project,
+  onDeleteProject,
+  onEditClick,
+  onStartTimer,
+  onStopTimer,
+}) => {
+  const runningSince = project ? project.timer.runningSince : ' ';
+  const elapsed = project ? project.timer.elapsed : ' ';
   const { id, name, description, price, status } = project;
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    const timerInterval = setInterval(() => setCounter(counter + 1), 250);
+    return () => {
+      clearInterval(timerInterval);
+    };
+  }, [counter]);
   return (
     <div
       style={{ minWidth: '300px' }}
@@ -18,7 +35,9 @@ export const ProjectCard = ({ project, onDeleteProject, onEditClick }) => {
 
       <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>
       <p className=" font-normal text-gray-700 dark:text-gray-400">{description}</p>
-      <p className="text-center text-4xl p-5">10:35:20</p>
+      <p className="text-center text-4xl p-5">
+        {Helper.renderElapsedString(elapsed, runningSince)}
+      </p>
       <div className="flex flex-wrap justify-between">
         <div>
           {status === 'Ongoing' ? (
@@ -53,13 +72,13 @@ export const ProjectCard = ({ project, onDeleteProject, onEditClick }) => {
           </button>
         </div>
       </div>
-      <button
-        type="button"
-        className="w-full mt-3 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-        // onClick={handleSubmit}
-      >
-        Start Timer
-      </button>
+      <TimerActionButton
+        id={id}
+        runningSince={runningSince}
+        onStartTimer={onStartTimer}
+        onStopTimer={onStopTimer}
+        status={status}
+      />
     </div>
   );
 };

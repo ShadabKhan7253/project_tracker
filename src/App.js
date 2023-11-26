@@ -16,7 +16,8 @@ function App() {
   };
 
   const handleAddProject = (project) => {
-    const projectToBeAdded = { ...project, id: uuidv4(), elapsed: 0, runningSince: null };
+    const timer = { elapsed: 0, runningSince: null };
+    const projectToBeAdded = { ...project, id: uuidv4(), timer };
     setProjects([...projects, projectToBeAdded]);
   };
 
@@ -49,6 +50,26 @@ function App() {
     setProjects(updatedProjects);
   };
 
+  const handleStartTimer = (projectId) => {
+    const updatedProjects = projects.map((project) =>
+      projectId === project.id ? { ...project, runningSince: Date.now() } : project
+    );
+    setProjects(updatedProjects);
+  };
+
+  const handleStopTimer = (projectId) => {
+    const updatedProjects = projects.map((project) => {
+      if (project.id !== projectId) return project;
+
+      return {
+        ...project,
+        elapsed: project.elapsed + (Date.now() - project.runningSince),
+        runningSince: null,
+      };
+    });
+    setProjects(updatedProjects);
+  };
+
   return (
     <>
       <Header
@@ -60,6 +81,8 @@ function App() {
         projects={projects}
         onDeleteProject={handleDeleteProject}
         onUpdateProject={handleUpdateProject}
+        onStartTimer={handleStartTimer}
+        onStopTimer={handleStopTimer}
       />
       <Footer />
     </>

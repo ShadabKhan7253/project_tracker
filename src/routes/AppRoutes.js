@@ -2,7 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HomePage, ProjectDetailsPage } from '../pages';
 
-export const AppRoutes = ({ projects, onDeleteProject, onUpdateProject }) => {
+export const AppRoutes = ({
+  projects,
+  onDeleteProject,
+  onUpdateProject,
+  onStartTimer,
+  onStopTimer,
+}) => {
   return (
     <Routes>
       <Route
@@ -12,6 +18,8 @@ export const AppRoutes = ({ projects, onDeleteProject, onUpdateProject }) => {
             projects={projects}
             onDeleteProject={onDeleteProject}
             onUpdateProject={onUpdateProject}
+            onStartTimer={onStartTimer}
+            onStopTimer={onStopTimer}
           />
         }
       />
